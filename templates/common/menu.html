@@ -1,0 +1,15 @@
+<nav id="menu">
+    <div class="inner">
+        <ul class="links">
+            {% for category in menu.categories %}
+                <li><a href="{% url 'category-product-list' category.slug %}">{{ category.name }}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="actions stacked">
+            {% for name, url in menu.actions.items %}
+                <li><a href="{{ url }}" class="button fit">{{ name }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+    <a class="close" href="#menu">Close</a>
+</nav>

@@ -1,0 +1,13 @@
+{% extends 'common/base.html' %}
+
+{% block banner %}
+    {% include 'common/generic_banner.html' %}
+{% endblock %}
+
+{% block content %}
+    <section id="main_section" class="tiles">
+        {% for product in products %}
+            {% include 'product_viewer_app/product_tile.html' %}
+        {% endfor %}
+    </section>
+{% endblock %}

@@ -1,0 +1,13 @@
+<footer id="footer">
+    <div class="inner">
+        <ul class="icons">
+            {% for link, fa_icon in footer.external_links.items %}
+                <li><a href="{{ link }}" class="icon brands alt {{ fa_icon.value }}"><span class="label"></span></a></li>
+            {% endfor %}
+        </ul>
+        <ul class="copyright">
+            <li>© {{ footer.copyright_label }}</li>
+            <li>Site made by: <a href="{{ footer.site_made_by_href }}">{{ footer.site_made_by_label }}</a></li>
+        </ul>
+    </div>
+</footer>

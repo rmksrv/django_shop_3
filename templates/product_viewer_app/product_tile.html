@@ -1,0 +1,14 @@
+<article style="background-image: url({{ product.image.url }});">
+
+    <span class="image" style="display: none;">
+        <img src="{{ product.image.url }}" alt="">
+    </span>
+
+    <header class="major">
+        <h3><a href="{% url 'product-detail' product.slug %}" class="link">{{ product.name }}</a></h3>
+        <p>{{ product.preview_description }}</p>
+    </header>
+
+    <a href="{% url 'product-detail' product.slug %}" class="link primary"></a>
+
+</article>

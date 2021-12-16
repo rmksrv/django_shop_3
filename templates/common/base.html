@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% load i18n static %}
+<html lang="ru">
+
+    <head>
+        <title>{{ page_title }}</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+        <noscript><link rel="stylesheet" href={% static 'css/noscript.css' %} /></noscript>
+        {% block meta_tags %}{% endblock %}
+    </head>
+
+    <body>
+        <div id="wrapper">
+            {% include 'common/header.html' %}
+            {% include 'common/menu.html' %}
+            {% block banner %}{% endblock %}
+            <div id="main">
+                {% block content %}
+                {% endblock %}
+            </div>
+            {% include 'common/footer.html' %}
+        </div>
+        {% include 'common/scripts.html' %}
+    </body>
+
+</html>

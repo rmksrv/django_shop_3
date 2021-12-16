@@ -1,0 +1,25 @@
+<section id="banner" class="{{ banner.type }}" style="background-image: url({{ banner.image_url }})">
+
+    <div class="inner">
+
+        <header class="major">
+            <h1>{{ banner.header_text }}</h1>
+        </header>
+
+        <div class="content">
+            <p>{{ banner.content_text|safe|escape }}</p>
+
+            {% if banner.button_text and banner.button_href %}
+                <br>
+                <ul class="actions">
+                    <li>
+                        <a href="{{ banner.button_href }}" class="button next scrolly">{{ banner.button_text }}</a>
+                    </li>
+                </ul>
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</section>
