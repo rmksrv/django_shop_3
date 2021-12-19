@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import Category, Product, ProductDescriptionParagraph
 
 
@@ -19,11 +20,11 @@ class ProductAdmin(admin.ModelAdmin):
     list_display = [
         "name",
         "category",
-        "price",
+        # "price",
         "available",
         "created_at",
         "updated_at",
     ]
     list_filter = ["available", "created_at", "updated_at", "category"]
-    list_editable = ["price", "available"]
+    list_editable = ["available"]
     prepopulated_fields = {"slug": ("name",)}

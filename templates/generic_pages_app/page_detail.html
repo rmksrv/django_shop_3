@@ -1,0 +1,19 @@
+{% extends 'common/base.html' %}
+
+{% block content %}
+    <section id="main_section">
+        <div class="inner">
+
+           <header class="major">
+               <h1>{{ page_data.title }}</h1>
+           </header>
+
+            {% with image_url=page_data.main_image.url %}
+                {% include 'generic_pages_app/image_main.html' %}
+            {% endwith %}
+
+            <p>{{ page_data.text|safe|escape }}</p>
+
+        </div>
+    </section>
+{% endblock %}

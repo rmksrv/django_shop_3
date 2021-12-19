@@ -2,7 +2,7 @@ from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse
 
-from .constants import CATEGORIES_IMAGE_LOCATION, PRODUCT_IMAGE_LOCATION, NO_IMAGE_PATH
+from .constants import CATEGORIES_IMAGE_LOCATION, NO_IMAGE_PATH, PRODUCTS_IMAGE_LOCATION
 
 
 class Category(models.Model):
@@ -18,10 +18,10 @@ class Category(models.Model):
     )
 
     def absolute_url(self):
-        return reverse("product_list_of_category", args=[self.slug])
+        return reverse("category-product-list", args=[self.slug])
 
     def __str__(self):
-        return f"Category(name={self.name})"
+        return self.name
 
 
 class ProductDescriptionParagraph(models.Model):
@@ -31,11 +31,11 @@ class ProductDescriptionParagraph(models.Model):
 
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     order = models.IntegerField(verbose_name="Порядок появления")
-    text = RichTextField(verbose_name="Текст", config_name="product_description", null=True, blank=True)
+    text = RichTextField(verbose_name="Текст", config_name="main", null=True, blank=True)
     image = models.ImageField(verbose_name="Изображение")
 
     def __str__(self):
-        return f"ProductDescriptionParagraph(product={self.product.name}, order={self.order})"
+        return str(self.order)
 
 
 class Product(models.Model):
@@ -57,11 +57,11 @@ class Product(models.Model):
     name = models.CharField(verbose_name="Наименование", max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
     image = models.ImageField(
-        verbose_name="Изображение", upload_to=PRODUCT_IMAGE_LOCATION, blank=True, default=NO_IMAGE_PATH
+        verbose_name="Изображение", upload_to=PRODUCTS_IMAGE_LOCATION, blank=True, default=NO_IMAGE_PATH
     )
     preview_description = models.CharField(verbose_name="Краткое описание", max_length=255, blank=True)
     price = models.DecimalField(verbose_name="Цена", max_digits=10, decimal_places=2)
-    stock = models.PositiveIntegerField(verbose_name="Доступное для продажи количество")
+    # stock = models.PositiveIntegerField(verbose_name="Доступное для продажи количество")
     available = models.BooleanField(verbose_name="Товар доступен", default=True)
     created_at = models.DateTimeField(verbose_name="Создан", auto_now_add=True)
     updated_at = models.DateTimeField(verbose_name="Последнее обновление", auto_now=True)
@@ -72,7 +72,7 @@ class Product(models.Model):
         return ProductDescriptionParagraph.objects.filter(product_id=self.id).order_by("order")
 
     def absolute_url(self):
-        return reverse("product_details", args=[self.slug])
+        return reverse("product-detail", args=[self.slug])
 
     def __str__(self):
-        return f"Product(category={self.category};name={self.name};price={self.price};stock={self.stock})"
+        return self.name

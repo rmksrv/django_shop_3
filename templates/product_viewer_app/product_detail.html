@@ -1,0 +1,27 @@
+{% extends 'common/base.html' %}
+
+{% block banner %}
+    {% include 'common/generic_banner.html' %}
+{% endblock %}
+
+{% block content %}
+    <section id="main_section" class="spotlights">
+        {% for paragraph in product.description_paragraphs %}
+
+            <section>
+
+                <a class="image">
+                    <img src="{{ paragraph.image.url }}" alt data-position="center center">
+                </a>
+
+                <div class="content">
+                    <div class="inner">
+                        {{ paragraph.text|safe|escape }}
+                    </div>
+                </div>
+
+            </section>
+
+        {% endfor %}
+    </section>
+{% endblock %}

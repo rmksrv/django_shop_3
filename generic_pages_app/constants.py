@@ -1,0 +1,1 @@
+GENERIC_PAGES_IMAGE_LOCATION = "generic_pages"

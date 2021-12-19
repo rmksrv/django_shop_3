@@ -1,4 +1,5 @@
 from pathlib import Path
+
 from decouple import config
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -14,6 +15,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "ckeditor",
+    "generic_pages_app.apps.GenericPagesAppConfig",
     "product_viewer_app.apps.ProductViewerAppConfig",
 ]
 
@@ -69,6 +71,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CKEDITOR_CONFIGS = {
+    # TODO: make custom configs with need to use only options
+    "main": {
+        "skin": "moono",
+    },
+}
+
 LANGUAGE_CODE = "ru-RU"
 TIME_ZONE = "UTC"
 USE_I18N = True
@@ -76,10 +85,10 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = "static/"
-STATIC_ROOT = BASE_DIR / "static"
-STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
-# STATIC_ROOT = ""
-# STATICFILES_DIRS = (BASE_DIR / "static",)
+# STATIC_ROOT = BASE_DIR / "static"
+# STATICFILES_DIRS = (BASE_DIR / "staticfiles",)
+STATIC_ROOT = ""
+STATICFILES_DIRS = (BASE_DIR / "static",)
 
 MEDIA_URL = "media/"
 MEDIA_ROOT = BASE_DIR / "media"

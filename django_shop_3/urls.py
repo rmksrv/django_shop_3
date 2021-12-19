@@ -1,12 +1,13 @@
 from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path, include
-from product_viewer_app import views
+from django.urls import include, path
+
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("product_viewer_app.urls")),
+    path("", include("generic_pages_app.urls")),
 ]
 
 
