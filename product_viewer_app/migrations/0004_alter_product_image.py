@@ -17,9 +17,7 @@ class Migration(migrations.Migration):
             name="image",
             field=models.ImageField(
                 blank=True,
-                default=pathlib.PureWindowsPath(
-                    "/assets/images/no_image.png"
-                ),
+                default=pathlib.PureWindowsPath("/assets/images/no_image.png"),
                 upload_to="products/%Y/%m/%d",
             ),
         ),

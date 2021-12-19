@@ -17,9 +17,7 @@ class Migration(migrations.Migration):
             model_name="product",
             name="image",
             field=image_cropping.fields.ImageCropField(
-                default=pathlib.PureWindowsPath(
-                    "/assets/images/no_image.png"
-                ),
+                default=pathlib.PureWindowsPath("/assets/images/no_image.png"),
                 upload_to="products/%Y/%m/%d",
             ),
         ),

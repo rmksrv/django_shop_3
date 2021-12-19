@@ -17,15 +17,24 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Category",
             fields=[
-                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
-                ("name", models.CharField(db_index=True, max_length=200, verbose_name="Имя")),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(db_index=True, max_length=200, verbose_name="Имя"),
+                ),
                 ("slug", models.SlugField(max_length=200, unique=True)),
                 (
                     "image",
                     models.ImageField(
-                        default=pathlib.PureWindowsPath(
-                            "/assets/images/no_image.png"
-                        ),
+                        default=pathlib.PureWindowsPath("/assets/images/no_image.png"),
                         null=True,
                         upload_to="categories",
                         verbose_name="Изображение",
@@ -41,26 +50,53 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="Product",
             fields=[
-                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
-                ("name", models.CharField(db_index=True, max_length=200, verbose_name="Наименование")),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(db_index=True, max_length=200, verbose_name="Наименование"),
+                ),
                 ("slug", models.SlugField(max_length=200, unique=True)),
                 (
                     "image",
                     models.ImageField(
                         blank=True,
-                        default=pathlib.PureWindowsPath(
-                            "/assets/images/no_image.png"
-                        ),
+                        default=pathlib.PureWindowsPath("/assets/images/no_image.png"),
                         upload_to="products/%Y/%m/%d",
                         verbose_name="Изображение",
                     ),
                 ),
-                ("preview_description", models.CharField(blank=True, max_length=255, verbose_name="Краткое описание")),
-                ("price", models.DecimalField(decimal_places=2, max_digits=10, verbose_name="Цена")),
-                ("stock", models.PositiveIntegerField(verbose_name="Доступное для продажи количество")),
-                ("available", models.BooleanField(default=True, verbose_name="Товар доступен")),
-                ("created_at", models.DateTimeField(auto_now_add=True, verbose_name="Создан")),
-                ("updated_at", models.DateTimeField(auto_now=True, verbose_name="Последнее обновление")),
+                (
+                    "preview_description",
+                    models.CharField(blank=True, max_length=255, verbose_name="Краткое описание"),
+                ),
+                (
+                    "price",
+                    models.DecimalField(decimal_places=2, max_digits=10, verbose_name="Цена"),
+                ),
+                (
+                    "stock",
+                    models.PositiveIntegerField(verbose_name="Доступное для продажи количество"),
+                ),
+                (
+                    "available",
+                    models.BooleanField(default=True, verbose_name="Товар доступен"),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(auto_now_add=True, verbose_name="Создан"),
+                ),
+                (
+                    "updated_at",
+                    models.DateTimeField(auto_now=True, verbose_name="Последнее обновление"),
+                ),
                 (
                     "category",
                     models.ForeignKey(
@@ -81,13 +117,27 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name="ProductDescriptionParagraph",
             fields=[
-                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
                 ("order", models.IntegerField(verbose_name="Порядок появления")),
-                ("text", ckeditor.fields.RichTextField(blank=True, null=True, verbose_name="Текст")),
+                (
+                    "text",
+                    ckeditor.fields.RichTextField(blank=True, null=True, verbose_name="Текст"),
+                ),
                 ("image", models.ImageField(upload_to="", verbose_name="Изображение")),
                 (
                     "product",
-                    models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to="product_viewer_app.product"),
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="product_viewer_app.product",
+                    ),
                 ),
             ],
             options={

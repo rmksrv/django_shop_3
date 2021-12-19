@@ -15,7 +15,11 @@ class Category(models.Model):
     name = models.CharField(verbose_name="Имя", max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
     image = models.ImageField(
-        verbose_name="Изображение", upload_to=CATEGORIES_IMAGE_LOCATION, null=True, blank=False, default=NO_IMAGE_PATH
+        verbose_name="Изображение",
+        upload_to=CATEGORIES_IMAGE_LOCATION,
+        null=True,
+        blank=False,
+        default=NO_IMAGE_PATH,
     )
     cropping = ImageRatioField("image", "1000x1000", verbose_name="Обрезать изображение")
 
@@ -60,7 +64,10 @@ class Product(models.Model):
     name = models.CharField(verbose_name="Наименование", max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
     image = models.ImageField(
-        verbose_name="Изображение", upload_to=PRODUCTS_IMAGE_LOCATION, blank=False, default=NO_IMAGE_PATH
+        verbose_name="Изображение",
+        upload_to=PRODUCTS_IMAGE_LOCATION,
+        blank=False,
+        default=NO_IMAGE_PATH,
     )
     cropping = ImageRatioField("image", "1000x1000", verbose_name="Обрезать изображение")
     preview_description = models.CharField(verbose_name="Краткое описание", max_length=255, blank=True)
