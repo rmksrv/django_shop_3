@@ -2,6 +2,8 @@ from typing import Dict, Optional
 
 import pydantic
 
+from generic_pages_app.models import GenericPage
+
 from .constants import (
     FOOTER_COPYRIGHT_LABEL,
     FOOTER_EXTERNAL_LINKS,
@@ -16,13 +18,12 @@ from .constants import (
     BannerTypeClass,
 )
 from .models import Category, Product
-from generic_pages_app.models import GenericPage
 
 
 class BaseContextMixin(object):
-
     def get_context_data(self, **kwargs) -> Dict:
-        pages = GenericPage.objects.all()
+        categories = Category.objects.filter(products__isnull=False)
+        pages = GenericPage.objects.filter(available=True)
 
         context = super().get_context_data(**kwargs) | {
             "header": {
@@ -30,10 +31,8 @@ class BaseContextMixin(object):
                 "title_right": HEADER_TITLE_RIGHT,
             },
             "menu": {
-                "categories": Category.objects.filter(products__isnull=False),
-                "actions": {
-                    page.title: page.absolute_url() for page in pages
-                },
+                "categories": categories,
+                "actions": {page.title: page.absolute_url() for page in pages},
             },
             "footer": {
                 "copyright_label": FOOTER_COPYRIGHT_LABEL,

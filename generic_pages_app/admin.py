@@ -1,9 +1,11 @@
 from django.contrib import admin
+from image_cropping import ImageCroppingMixin
+
 from .models import GenericPage
 
 
 @admin.register(GenericPage)
-class GenericPageAdmin(admin.ModelAdmin):
+class GenericPageAdmin(ImageCroppingMixin, admin.ModelAdmin):
     list_display = [
         "title",
         "created_at",

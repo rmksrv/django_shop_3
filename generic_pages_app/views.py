@@ -2,9 +2,10 @@ from typing import Dict
 
 from django.views.generic import DetailView, ListView
 
-from .models import GenericPage
 from product_viewer_app.models import Product
-from product_viewer_app.utils import BaseContextMixin, BannerContext
+from product_viewer_app.utils import BannerContext, BaseContextMixin
+
+from .models import GenericPage
 
 
 class IndexPageView(BaseContextMixin, ListView):

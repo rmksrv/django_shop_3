@@ -1,4 +1,5 @@
 {% extends 'common/base.html' %}
+{% load cropping %}
 
 {% block content %}
     <section id="main_section">
@@ -8,9 +9,9 @@
                <h1>{{ page_data.title }}</h1>
            </header>
 
-            {% with image_url=page_data.main_image.url %}
-                {% include 'generic_pages_app/image_main.html' %}
-            {% endwith %}
+            <span class="image main">
+                <img src="{% cropped_thumbnail page_data 'cropping' %}" alt="">
+            </span>
 
             <p>{{ page_data.text|safe|escape }}</p>
 

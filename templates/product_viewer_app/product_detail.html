@@ -1,4 +1,5 @@
 {% extends 'common/base.html' %}
+{% load cropping %}
 
 {% block banner %}
     {% include 'common/generic_banner.html' %}
@@ -11,7 +12,7 @@
             <section>
 
                 <a class="image">
-                    <img src="{{ paragraph.image.url }}" alt data-position="center center">
+                    <img src="{% cropped_thumbnail paragraph 'cropping' %}" alt="">
                 </a>
 
                 <div class="content">

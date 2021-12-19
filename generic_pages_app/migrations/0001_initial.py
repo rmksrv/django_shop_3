@@ -8,26 +8,25 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='GenericPage',
+            name="GenericPage",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=80, verbose_name='Название')),
-                ('slug', models.SlugField(max_length=100, unique=True)),
-                ('text', ckeditor.fields.RichTextField(null=True, verbose_name='Текст')),
-                ('main_image', models.ImageField(upload_to='generic_pages', verbose_name='Изображение')),
-                ('available', models.BooleanField(default=True, verbose_name='Доступна')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Создан')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Последнее обновление')),
+                ("id", models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name="ID")),
+                ("title", models.CharField(max_length=80, verbose_name="Название")),
+                ("slug", models.SlugField(max_length=100, unique=True)),
+                ("text", ckeditor.fields.RichTextField(null=True, verbose_name="Текст")),
+                ("main_image", models.ImageField(upload_to="generic_pages", verbose_name="Изображение")),
+                ("available", models.BooleanField(default=True, verbose_name="Доступна")),
+                ("created_at", models.DateTimeField(auto_now_add=True, verbose_name="Создан")),
+                ("updated_at", models.DateTimeField(auto_now=True, verbose_name="Последнее обновление")),
             ],
             options={
-                'verbose_name': 'Инфостраница',
-                'verbose_name_plural': 'Инфостраницы',
-                'index_together': {('id', 'slug')},
+                "verbose_name": "Инфостраница",
+                "verbose_name_plural": "Инфостраницы",
+                "index_together": {("id", "slug")},
             },
         ),
     ]

@@ -1,7 +1,8 @@
+{% load cropping %}
 <article style="background-image: url({{ product.image.url }});">
 
     <span class="image" style="display: none;">
-        <img src="{{ product.image.url }}" alt="">
+        <img src="{% cropped_thumbnail product 'cropping' %}" alt="">
     </span>
 
     <header class="major">

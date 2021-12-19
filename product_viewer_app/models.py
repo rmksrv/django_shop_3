@@ -1,6 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.urls import reverse
+from image_cropping import ImageCropField, ImageRatioField
 
 from .constants import CATEGORIES_IMAGE_LOCATION, NO_IMAGE_PATH, PRODUCTS_IMAGE_LOCATION
 
@@ -16,6 +17,7 @@ class Category(models.Model):
     image = models.ImageField(
         verbose_name="Изображение", upload_to=CATEGORIES_IMAGE_LOCATION, null=True, blank=False, default=NO_IMAGE_PATH
     )
+    cropping = ImageRatioField("image", "1000x1000", verbose_name="Обрезать изображение")
 
     def absolute_url(self):
         return reverse("category-product-list", args=[self.slug])
@@ -33,6 +35,7 @@ class ProductDescriptionParagraph(models.Model):
     order = models.IntegerField(verbose_name="Порядок появления")
     text = RichTextField(verbose_name="Текст", config_name="main", null=True, blank=True)
     image = models.ImageField(verbose_name="Изображение")
+    cropping = ImageRatioField("image", "1000x1000", verbose_name="Обрезать изображение")
 
     def __str__(self):
         return str(self.order)
@@ -57,8 +60,9 @@ class Product(models.Model):
     name = models.CharField(verbose_name="Наименование", max_length=200, db_index=True)
     slug = models.SlugField(max_length=200, db_index=True, unique=True)
     image = models.ImageField(
-        verbose_name="Изображение", upload_to=PRODUCTS_IMAGE_LOCATION, blank=True, default=NO_IMAGE_PATH
+        verbose_name="Изображение", upload_to=PRODUCTS_IMAGE_LOCATION, blank=False, default=NO_IMAGE_PATH
     )
+    cropping = ImageRatioField("image", "1000x1000", verbose_name="Обрезать изображение")
     preview_description = models.CharField(verbose_name="Краткое описание", max_length=255, blank=True)
     price = models.DecimalField(verbose_name="Цена", max_digits=10, decimal_places=2)
     # stock = models.PositiveIntegerField(verbose_name="Доступное для продажи количество")

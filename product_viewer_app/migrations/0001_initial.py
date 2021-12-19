@@ -24,7 +24,7 @@ class Migration(migrations.Migration):
                     "image",
                     models.ImageField(
                         default=pathlib.PureWindowsPath(
-                            "C:/Users/rmksr/PycharmProjects/impractical_python/django_shop_3/static/images/no_image.png"
+                            "/assets/images/no_image.png"
                         ),
                         null=True,
                         upload_to="categories",
@@ -49,7 +49,7 @@ class Migration(migrations.Migration):
                     models.ImageField(
                         blank=True,
                         default=pathlib.PureWindowsPath(
-                            "C:/Users/rmksr/PycharmProjects/impractical_python/django_shop_3/static/images/no_image.png"
+                            "/assets/images/no_image.png"
                         ),
                         upload_to="products/%Y/%m/%d",
                         verbose_name="Изображение",

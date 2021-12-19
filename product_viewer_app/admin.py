@@ -1,21 +1,22 @@
 from django.contrib import admin
+from image_cropping import ImageCroppingMixin
 
 from .models import Category, Product, ProductDescriptionParagraph
 
 
-class ProductDescriptionParagraphInline(admin.StackedInline):
+class ProductDescriptionParagraphInline(ImageCroppingMixin, admin.StackedInline):
     model = ProductDescriptionParagraph
     extra = 1
 
 
 @admin.register(Category)
-class CategoryAdmin(admin.ModelAdmin):
+class CategoryAdmin(ImageCroppingMixin, admin.ModelAdmin):
     list_display = ["name"]
     prepopulated_fields = {"slug": ("name",)}
 
 
 @admin.register(Product)
-class ProductAdmin(admin.ModelAdmin):
+class ProductAdmin(ImageCroppingMixin, admin.ModelAdmin):
     inlines = [ProductDescriptionParagraphInline]
     list_display = [
         "name",
