@@ -44,7 +44,8 @@ class BaseContextMixin(object):
         return context
 
 
-class ContactFormMixin(object)    def get_context_data(self, **kwargs) -> Dict:
+class ContactFormMixin(object):
+    def get_context_data(self, **kwargs) -> Dict:
         return super().get_context_data(**kwargs)
 
 
