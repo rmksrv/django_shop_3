@@ -3,7 +3,7 @@ from typing import Dict
 from django.views.generic import DetailView, ListView
 
 from product_viewer_app.models import Product
-from product_viewer_app.utils import BannerContext, BaseContextMixin
+from generic_pages_app.utils import BannerContext, BaseContextMixin
 
 from .models import GenericPage
 

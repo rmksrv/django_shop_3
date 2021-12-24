@@ -3,7 +3,8 @@ from django.db import models
 from django.urls import reverse
 from image_cropping import ImageCropField, ImageRatioField
 
-from .constants import CATEGORIES_IMAGE_LOCATION, NO_IMAGE_PATH, PRODUCTS_IMAGE_LOCATION
+from .constants import CATEGORIES_IMAGE_LOCATION, PRODUCTS_IMAGE_LOCATION
+from generic_pages_app.constants import NO_IMAGE_PATH
 
 
 class Category(models.Model):

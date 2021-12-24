@@ -17,12 +17,12 @@ from .constants import (
     NO_IMAGE_URL,
     BannerTypeClass,
 )
-from .models import Category, Product
+from product_viewer_app.models import Category, Product
 
 
 class BaseContextMixin(object):
     def get_context_data(self, **kwargs) -> Dict:
-        categories = Category.objects.filter(products__isnull=False)
+        categories = Category.objects.filter(products__isnull=False).distinct()
         pages = GenericPage.objects.filter(available=True)
 
         context = super().get_context_data(**kwargs) | {
@@ -42,6 +42,11 @@ class BaseContextMixin(object):
             },
         }
         return context
+
+
+class ContactFormMixin(object):
+    def get_context_data(self, **kwargs) -> Dict:
+        return super().get_context_data(**kwargs)
 
 
 class BannerContext(pydantic.BaseModel):
