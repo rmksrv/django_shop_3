@@ -5,6 +5,7 @@ import pydantic
 from generic_pages_app.models import GenericPage
 
 from .constants import (
+    SITE_NAME,
     FOOTER_COPYRIGHT_LABEL,
     FOOTER_EXTERNAL_LINKS,
     FOOTER_SITE_MADE_BY_HREF,
@@ -24,6 +25,7 @@ class BaseContextMixin(object):
     def get_context_data(self, **kwargs) -> Dict:
         categories = Category.objects.filter(products__isnull=False).distinct()
         pages = GenericPage.objects.filter(available=True)
+        page_title = kwargs.get("page_title", "") + " | " + SITE_NAME
 
         context = super().get_context_data(**kwargs) | {
             "header": {
@@ -40,6 +42,7 @@ class BaseContextMixin(object):
                 "site_made_by_label": FOOTER_SITE_MADE_BY_LABEL,
                 "site_made_by_href": FOOTER_SITE_MADE_BY_HREF,
             },
+            "page_title": page_title,
         }
         return context
 

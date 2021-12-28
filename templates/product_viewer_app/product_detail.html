@@ -11,9 +11,11 @@
 
             <section>
 
-                <a class="image">
-                    <img src="{% cropped_thumbnail paragraph 'cropping' %}" alt="">
-                </a>
+                {% if paragraph.image %}
+                    <a class="image">
+                        <img src="{% cropped_thumbnail paragraph 'cropping' %}" alt="">
+                    </a>
+                {% endif %}
 
                 <div class="content">
                     <div class="inner">

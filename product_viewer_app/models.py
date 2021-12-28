@@ -39,7 +39,7 @@ class ProductDescriptionParagraph(models.Model):
     product = models.ForeignKey("Product", on_delete=models.CASCADE)
     order = models.IntegerField(verbose_name="Порядок появления")
     text = RichTextField(verbose_name="Текст", config_name="main", null=True, blank=True)
-    image = models.ImageField(verbose_name="Изображение")
+    image = models.ImageField(verbose_name="Изображение", null=True, blank=True)
     cropping = ImageRatioField("image", "1000x1000", verbose_name="Обрезать изображение")
 
     def __str__(self):

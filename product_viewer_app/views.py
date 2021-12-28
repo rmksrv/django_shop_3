@@ -16,10 +16,12 @@ class ProductListView(BaseContextMixin, ListView):
         if category_slug:
             category = Category.objects.get(slug=category_slug)
             banner_context = BannerContext.category_product_list_banner_context(category)
+            page_title = category.name
         else:
             banner_context = BannerContext.product_list_banner_context()
+            page_title = "Товары"
 
-        context = super().get_context_data(**kwargs) | banner_context
+        context = super().get_context_data(page_title=page_title, **kwargs) | banner_context
         return context
 
     def get_queryset(self):
@@ -37,5 +39,6 @@ class ProductDetailView(BaseContextMixin, DetailView):
 
     def get_context_data(self, **kwargs) -> Dict:
         banner_context = BannerContext.product_detail_banner_context(self.object)
-        context = super().get_context_data(**kwargs) | banner_context
+        page_title = self.object.name
+        context = super().get_context_data(page_title=page_title, **kwargs) | banner_context
         return context
